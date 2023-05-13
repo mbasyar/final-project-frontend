@@ -2,16 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import { addToCart } from "../features/cartSlice";
-import { useGetAllProductsQuery } from "../features/productsApi";
+// import { useGetAllProductsQuery } from "../features/productsApi";
 
 const Home = () => {
-  const { items: products, status } = useSelector((state) => state.products);
+  const { items: data, status } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, error, isLoading } = useGetAllProductsQuery();
-  console.log("Api", isLoading);
+  // const { data, error, isLoading } = useGetAllProductsQuery();
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -26,9 +25,9 @@ const Home = () => {
           <div className="products">
             {data &&
               data?.map((product) => (
-                <div key={product.id} className="product">
+                <div key={product._id} className="product">
                   <h3>{product.name}</h3>
-                  <img src={product.image} alt={product.name} />
+                  <img src={product.image.url} alt={product.name} />
                   <div className="details">
                     <span>{product.desc}</span>
                     <span className="price">${product.price}</span>

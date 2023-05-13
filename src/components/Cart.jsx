@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   addToCart,
   clearCart,
@@ -9,10 +9,13 @@ import {
   getTotals,
   removeFromCart,
 } from "../features/cartSlice";
+import PayButton from "./PayButton";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTotals());
@@ -70,9 +73,9 @@ const Cart = () => {
 
           <div className="cart-items">
             {cart.cartItems.map((cartItem) => (
-              <div className="cart-item" key={cartItem.id}>
+              <div className="cart-item" key={cartItem._id}>
                 <div className="cart-product">
-                  <img src={cartItem.image} alt={cartItem.name} />
+                  <img src={cartItem.image.url} alt={cartItem.name} />
                   <div>
                     <h3>{cartItem.name}</h3>
                     <p>{cartItem.desc}</p>
@@ -107,7 +110,17 @@ const Cart = () => {
                 <span className="amout">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
-              <button>Check out</button>
+              {auth._id ? (
+                <PayButton cartItems={cart.cartItems} />
+              ) : (
+                <button
+                  className="cart-login"
+                  onClick={() => navigate("/login")}
+                >
+                  Login to Check out
+                </button>
+              )}
+
               <div className="continue-shopping">
                 <Link to="/">
                   <svg
