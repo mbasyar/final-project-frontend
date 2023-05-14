@@ -3,64 +3,63 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router";
-import { productsDelete } from "../../../features/productsSlice";
-import EditProduct from "../EditProduct";
+import { userDelete, usersFetch } from "../../../features/usersSlice";
 
-export default function ProductList() {
+export default function UsersList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.products);
+  const { list } = useSelector((state) => state.users);
+
+  React.useEffect(() => {
+    dispatch(usersFetch());
+  }, [dispatch]);
 
   const rows =
-    items &&
-    items.map((item) => {
+    list &&
+    list.map((user) => {
       return {
-        id: item._id,
-        image: item.image.url,
-        name: item.name,
-        desc: item.desc,
-        price: item.price.toLocaleString(),
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
       };
     });
 
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
+
+    { field: "name", headerName: "Name", width: 150 },
     {
-      field: "image",
-      headerName: "Image",
-      width: 80,
+      field: "email",
+      headerName: "Email",
+      width: 200,
+    },
+    {
+      field: "isAdmin",
+      headerName: "Role",
+      width: 100,
       renderCell: (params) => {
         return (
-          <ImageContainer>
-            <img src={params.row.image} alt="" />
-          </ImageContainer>
+          <div>
+            {params.row.isAdmin ? (
+              <Admin>Admin</Admin>
+            ) : (
+              <Customer>Customer</Customer>
+            )}
+          </div>
         );
       },
-    },
-    { field: "name", headerName: "Name", width: 130 },
-    {
-      field: "desc",
-      headerName: "Description",
-      width: 130,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 80,
     },
     {
       field: "actions",
       headerName: "Actions",
       sortable: false,
-      width: 170,
+      width: 120,
       renderCell: (params) => {
         return (
           <Actions>
             <Delete onClick={() => handleDelete(params.row.id)}>Delete</Delete>
-            <EditProduct prodId={params.row.id} />
-            <View onClick={() => navigate(`/product/${params.row.id}`)}>
-              View
-            </View>
+            <View onClick={() => navigate(`/user/${params.row.id}`)}>View</View>
           </Actions>
         );
       },
@@ -68,8 +67,8 @@ export default function ProductList() {
   ];
 
   const handleDelete = (id) => {
-    dispatch(productsDelete(id));
-    // console.log("deleting");
+    dispatch(userDelete(id));
+    // // console.log("deleting");
   };
 
   return (
@@ -86,12 +85,6 @@ export default function ProductList() {
     </div>
   );
 }
-
-const ImageContainer = styled.div`
-  img {
-    height: 40px;
-  }
-`;
 
 const Actions = styled.div`
   width: 100%;
@@ -114,4 +107,20 @@ const Delete = styled.button`
 
 const View = styled.button`
   background-color: rgb(114, 224, 40);
+`;
+
+const Admin = styled.div`
+  color: rgb(253, 181, 40);
+  background: rgba(253, 181, 40, 0.12);
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 14px;
+`;
+
+const Customer = styled.div`
+  color: rgb(38, 198, 249);
+  background: rgba(38, 198, 249, 0.12);
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 14px;
 `;

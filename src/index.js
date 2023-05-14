@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
 import productsReducer, { productsFetch } from "./features/productsSlice";
+import ordersSlice from "./features/ordersSlice";
+import usersSlice from "./features/usersSlice";
 import cartReducer, { getTotals } from "./features/cartSlice";
 import authReducer, { loadUser } from "./features/authSlice";
 import { productsApi } from "./features/productsApi";
@@ -13,6 +15,8 @@ import { productsApi } from "./features/productsApi";
 const store = configureStore({
   reducer: {
     products: productsReducer,
+    orders: ordersSlice,
+    users: usersSlice,
     cart: cartReducer,
     auth: authReducer,
     [productsApi.reducerPath]: productsApi.reducer,

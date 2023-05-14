@@ -1,0 +1,68 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { url, setHeaders } from "./api";
+import { toast } from "react-toastify";
+
+const initialState = {
+  list: [],
+  status: null,
+  deleteStatus: null,
+};
+
+// GET User
+export const usersFetch = createAsyncThunk("users/usersFetch", async () => {
+  try {
+    const response = await axios.get(`${url}/users`, setHeaders());
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Delete User
+export const userDelete = createAsyncThunk("user/userDelete", async (id) => {
+  try {
+    const response = await axios.delete(`${url}/users/${id}`, setHeaders());
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error.response?.data);
+  }
+});
+
+const usersSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    // GET
+    [usersFetch.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [usersFetch.fulfilled]: (state, action) => {
+      state.list = action.payload;
+      state.status = "success";
+    },
+    [usersFetch.rejected]: (state, action) => {
+      state.status = "rejected";
+    },
+
+    // Delete
+    [userDelete.pending]: (state, action) => {
+      state.deleteStatus = "pending";
+    },
+    [userDelete.fulfilled]: (state, action) => {
+      const newList = state.list.filter(
+        (list) => list._id !== action.payload._id
+      );
+      state.list = newList;
+      state.deleteStatus = "success";
+      toast.error("User Deleted!");
+    },
+    [userDelete.rejected]: (state, action) => {
+      state.deleteStatus = "rejected";
+    },
+  },
+});
+
+export default usersSlice.reducer;

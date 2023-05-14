@@ -108,7 +108,8 @@
   font-size: 20px;
   font-weight: 700;
 }
-.product button {
+.product button,
+.product-add-to-cart {
   width: 100%;
   height: 40px;
   border-radius: 5px;
@@ -120,6 +121,12 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.product-add-to-cart {
+  width: auto;
+  padding: 0 2rem;
+  margin-top: 0;
 }
 
 /* Cart */
@@ -213,7 +220,7 @@
   border-top: 1px solid rgb(187, 187, 187);
   padding-top: 2rem;
 }
-.cart-summary .clear-btn {
+.cart-summary .clear-cart {
   width: 130px;
   height: 40px;
   border-radius: 5px;
