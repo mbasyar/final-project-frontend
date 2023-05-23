@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 import { addToCart } from "../features/cartSlice";
+import Footer from "./footer";
 // import { useGetAllProductsQuery } from "../features/productsApi";
 
 const Home = () => {
@@ -47,6 +48,7 @@ const Home = () => {
       ) : (
         <p>Unexpected error occured...</p>
       )}
+      <Footer />
     </div>
   );
 };

@@ -29,11 +29,14 @@
   position: sticky;
   top: 0;
   height: 70px;
-  background: black;
+  background: #1e3932;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 4rem;
+}
+.nav-bar > h2 {
+  margin: 0;
 }
 .nav-bar a {
   text-decoration: none;
@@ -53,17 +56,21 @@
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  background: yellow;
+  background: gold;
   font-size: 14px;
   font-weight: 700;
   color: black;
   margin-left: 5px;
 }
+.icon {
+  fill: white;
+}
 
 /* Home */
 
 .home-container {
-  padding: 2rem 4rem;
+  /* padding: 2rem 4rem 0rem 4rem; */
+  padding-top: 2rem;
 }
 .home-container h2 {
   font-size: 40px;
@@ -116,7 +123,7 @@
   margin-top: 2rem;
   font-weight: 400;
   letter-spacing: 1.15px;
-  background-color: #4b70e2;
+  background-color: #008248;
   color: #f9f9f9;
   border: none;
   outline: none;
@@ -127,6 +134,9 @@
   width: auto;
   padding: 0 2rem;
   margin-top: 0;
+}
+.product button:hover{
+  background-color: #1e3932;
 }
 
 /* Cart */
@@ -255,11 +265,14 @@
   border-radius: 5px;
   font-weight: 400;
   letter-spacing: 1.15px;
-  background-color: #4b70e2;
+  background-color: #008248;
   color: #f9f9f9;
   border: none;
   outline: none;
   cursor: pointer;
+}
+.cart-checkout button:hover {
+  background-color: #1e3932;
 }
 
 .cart-checkout .cart-login {
@@ -303,6 +316,50 @@
   color: rgb(97, 97, 97);
 }
 
+footer {
+  margin-top: 6rem;
+  padding: 0;
+  background-color: #1e3932;
+  align-items: center;
+}
+
+.footer-content {
+    padding: 0 2rem;
+    background: #1e3932;
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  .footer-section {
+  padding: 2rem;
+  margin-right: 10px;
+  text-align: justify;
+ 
+  text-decoration: none;
+  }
+  .footer-section h3 {
+    color: white;
+    font-weight: 700;
+    font-size: 25px;
+    margin-bottom: 0.5rem;
+    text-align: justify;
+  }
+  
+  .footer-section ul{
+    list-style-type: none;
+  }
+
+  .footer-section li a {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-bottom {
+    text-align: center;
+    background-color: #008248;
+    color: white;
+    margin-bottom: 0;
+  }
 /* Responsive */
 
 @media (max-width: 665px) {
@@ -336,3 +393,4 @@
     margin-bottom: 2rem;
   }
 }
+
