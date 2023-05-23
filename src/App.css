@@ -319,27 +319,26 @@
 footer {
   margin-top: 6rem;
   padding: 0;
-  background-color: #1e3932;
+  background-color: #e3f0ec;
   align-items: center;
 }
 
 .footer-content {
     padding: 0 2rem;
-    background: #1e3932;
+    background: #d7dfdd;
     display: flex;
     align-items: center;
-    color: white;
+    color: #1e3932;
   }
 
   .footer-section {
   padding: 2rem;
   margin-right: 10px;
   text-align: justify;
- 
   text-decoration: none;
   }
   .footer-section h3 {
-    color: white;
+    color: #008248;
     font-weight: 700;
     font-size: 25px;
     margin-bottom: 0.5rem;
@@ -351,7 +350,7 @@ footer {
   }
 
   .footer-section li a {
-    color: white;
+    color: #1e3932;
     text-decoration: none;
   }
   .footer-bottom {
@@ -391,6 +390,16 @@ footer {
   }
   .cart-summary .clear-btn {
     margin-bottom: 2rem;
+  }
+  .footer {
+    margin-bottom: 1rem;
+  }
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-section ul {
+    margin: 0;
   }
 }
 
