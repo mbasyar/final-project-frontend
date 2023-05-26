@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-section">
           <h3>Tentang Kami</h3>
-          <p>littlePhone Store bertekad untuk menyediakan pengalaman belanja online
+          <p>Phone store bertekad untuk menyediakan pengalaman belanja online
              yang menyenangkan dan praktis bagi pelanggan kami. 
              Kami menawarkan berbagai produk HP terbaru dan terbaik.</p>
         </div>

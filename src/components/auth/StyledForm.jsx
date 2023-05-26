@@ -5,13 +5,12 @@ export const StyledForm = styled.form`
   width: 100%;
   margin: 5rem auto;
   border: 1px solid rgb(0, 208, 255);
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5rem;
-  background-color: wheat;
 
   h2 {
     margin-bottom: 1rem;
-    color: blue;
+    color: #008248;
   }
 
   button,
@@ -29,7 +28,7 @@ export const StyledForm = styled.form`
   }
 
   button {
-    background-color: blue;
+    background-color: #008248;
     color: white;
     cursor: pointer;
     &:focus {
@@ -37,6 +36,9 @@ export const StyledForm = styled.form`
     }
   }
 
+  button:hover {
+    background-color : #1e3932;
+  }
   p {
     font-size: 14px;
     color: red;
